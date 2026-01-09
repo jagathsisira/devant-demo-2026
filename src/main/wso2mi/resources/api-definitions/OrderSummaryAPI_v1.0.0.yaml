@@ -1,0 +1,22 @@
+openapi: 3.0.1
+info:
+  title: OrderSummaryAPI
+  description: API Definition of OrderSummaryAPI
+  version: 1.0.0
+servers:
+- url: http://localhost:8290/ordersummary/1.0.0
+- url: https://localhost:8253/ordersummary/1.0.0
+paths:
+  /{orderid}:
+    get:
+      parameters:
+      - name: orderid
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default response

@@ -1,0 +1,10 @@
+---
+key: "OrderSummaryAPI-1.0.0"
+name : "OrderSummaryAPI"
+displayName : "OrderSummaryAPI"
+description: "OrderSummaryAPI"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/ordersummary/1.0.0"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false

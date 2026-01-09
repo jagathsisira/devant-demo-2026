@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/ordersummary" name="OrderSummaryAPI" version="1.0.0" version-type="url"
+    xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/{orderid}">
+        <inSequence>
+            <variable name="orderid" type="STRING" expression="${params.pathParams.orderid}" />
+            <payloadFactory media-type="json" template-type="default">
+
+                <format>{"response":"success"}</format>
+            </payloadFactory>
+            <respond />
+        </inSequence>
+        <faultSequence>
+        </faultSequence>
+    </resource>
+</api>
