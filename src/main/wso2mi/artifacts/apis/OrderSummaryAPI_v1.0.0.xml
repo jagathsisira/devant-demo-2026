@@ -3,10 +3,57 @@
     xmlns="http://ws.apache.org/ns/synapse">
     <resource methods="GET" uri-template="/{orderid}">
         <inSequence>
-            <variable name="orderid" type="STRING" expression="${params.pathParams.orderid}" />
+            <property name="uri.var.orderid" scope="default" type="STRING"
+                expression="${params.pathParams.OrderId}" />
+            <variable name="orderid" type="INTEGER"
+                expression="${params.pathParams.OrderId}" /><log category="INFO" logMessageID="false" logFullPayload="true">
+                <message>Order details request received</message>
+                <property name="Order Id" expression="${vars.orderid}" />
+            </log>
+            <call>
+                <endpoint key="OrderDataServiceEndpoint" />
+            </call>
+            <variable name="customerid" type="STRING"
+                expression="${xpath('//a:OrderCollection/a:Orders/a:CustomerId')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
+            <variable name="productid" type="STRING"
+                expression="${xpath('//a:OrderCollection/a:Orders/a:ProductId')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
+            <variable name="qty" type="STRING"
+                expression="${xpath('//a:OrderCollection/a:Orders/a:Quantity')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
+            <variable name="orderdate" type="STRING"
+                expression="${xpath('//a:OrderCollection/a:Orders/a:Order_Date')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
+            <header name="Content-Type" action="remove" scope="transport" />
+            <property name="uri.var.customerid" scope="default" type="STRING"
+                expression="${vars.customerid}" />
+            <log category="INFO" logMessageID="false" logFullPayload="true">
+                <message>Order details extracted</message>
+                <property name="Customer Id" expression="${vars.customerid}" />
+            </log>
+            <call >
+                <endpoint key="CustomerDataServiceEndpoint" />
+            </call>
+            <log category="INFO" logMessageID="false" logFullPayload="true">
+                <message>Customer details extracted</message>
+                <property name="Customer Id" expression="${vars.customerid}" />
+            </log>
+            <variable name="firstname" type="STRING"
+                expression="${xpath('//a:CustomersCollection/a:Customers/a:FirstName')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
+            <variable name="lastname" type="STRING"
+                expression="${xpath('//a:CustomersCollection/a:Customers/a:LastName')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
+            <variable name="city" type="STRING"
+                expression="${xpath('//a:CustomersCollection/a:Customers/a:City')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
             <payloadFactory media-type="json" template-type="default">
 
-                <format>{"response":"success"}</format>
+                <format>{ "OrderSummary": { "OrderDetails":{ "OrderId":${vars.orderid},
+                    "ProductId":"${vars.productid}", "Quantity": ${vars.qty},
+                    "OrderDateTme":"${vars.orderdate}" }, "CustomerDetails": { "Name":
+                    "${vars.firstname} ${vars.lastname}", "City": "${vars.city}", } } }</format>
             </payloadFactory>
             <respond />
         </inSequence>
