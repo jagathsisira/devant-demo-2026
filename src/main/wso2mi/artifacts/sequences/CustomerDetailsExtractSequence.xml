@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CustomerDetailsExtractSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+            <variable name="firstname" type="STRING"
+                expression="${xpath('//a:CustomersCollection/a:Customers/a:FirstName')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
+            <variable name="lastname" type="STRING"
+                expression="${xpath('//a:CustomersCollection/a:Customers/a:LastName')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
+            <variable name="city" type="STRING"
+                expression="${xpath('//a:CustomersCollection/a:Customers/a:City')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
+</sequence>

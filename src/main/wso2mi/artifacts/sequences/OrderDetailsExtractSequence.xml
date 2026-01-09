@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="OrderDetailsExtractSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+            <variable name="customerid" type="STRING"
+                expression="${xpath('//a:OrderCollection/a:Orders/a:CustomerId')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
+            <variable name="productid" type="STRING"
+                expression="${xpath('//a:OrderCollection/a:Orders/a:ProductId')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
+            <variable name="qty" type="STRING"
+                expression="${xpath('//a:OrderCollection/a:Orders/a:Quantity')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
+            <variable name="orderdate" type="STRING"
+                expression="${xpath('//a:OrderCollection/a:Orders/a:Order_Date')}"
+                xmlns:a="http://ws.wso2.org/dataservice" />
+</sequence>

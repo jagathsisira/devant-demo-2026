@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="CommonFaultSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log category="INFO"   logMessageID="false" logFullPayload="false" >
+    <message>Error occured. Please find below details.</message>
+        <property name="ERROR_CODE"  expression="${properties.synapse.ERROR_CODE}"   />
+        <property name="ERROR_MESSAGE"  expression="${properties.synapse.ERROR_MESSAGE}"   />
+        <property name="ERROR_DETAIL"  expression="${properties.synapse.ERROR_DETAIL}"   />
+        <property name="ERROR_EXCEPTION"  expression="${properties.synapse.ERROR_EXCEPTION}"   />
+</log><payloadFactory media-type="json" template-type="default">
+
+        <format>{ "ErrorDetatils":{ "ErrorCode":${properties.synapse.ERROR_CODE},
+            "ErrorMessage":"${properties.synapse.ERROR_MESSAGE}",
+            "ErrorDetail":"${properties.synapse.ERROR_DETAIL}",
+            "ErrorException":"${properties.synapse.ERROR_EXCEPTION}" } }</format>
+    </payloadFactory>
+    <property name="HTTP_SC" scope="axis2" type="STRING" value="500" />
+    <respond />
+</sequence>
