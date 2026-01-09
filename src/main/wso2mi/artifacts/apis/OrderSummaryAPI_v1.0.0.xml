@@ -53,7 +53,7 @@
                 <format>{ "OrderSummary": { "OrderDetails":{ "OrderId":${vars.orderid},
                     "ProductId":"${vars.productid}", "Quantity": ${vars.qty},
                     "OrderDateTme":"${vars.orderdate}" }, "CustomerDetails": { "Name":
-                    "${vars.firstname} ${vars.lastname}", "City": "${vars.city}", } } }</format>
+                    "${vars.firstname} ${vars.lastname}", "City": "${vars.city}" } } }</format>
             </payloadFactory>
             <respond />
         </inSequence>
