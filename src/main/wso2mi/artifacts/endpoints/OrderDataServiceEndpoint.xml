@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoint name="OrderDataServiceEndpoint" xmlns="http://ws.apache.org/ns/synapse">
-    <http method="get" uri-template="https://zo0vq.wiremockapi.cloud/Orders/{uri.var.orderid}">
+    <http method="get" uri-template="https://11111zo0vq.wiremockapi.cloud/Orders/{uri.var.orderid}">
         <suspendOnFailure>
             <initialDuration>-1</initialDuration>
             <progressionFactor>1</progressionFactor>
